@@ -18,11 +18,6 @@ class Estante
             $this->livros,
             // fn($livroAtual) => $livroAtual !== $livro
             function ($livroAtual) use ($livro) {
-                echo 'Livro Atual: ' . $livroAtual->getTitulo();
-                if ($livroAtual === $livro) {
-                    echo ' - Livro removido!';
-                }
-                echo '<br>';
                 return $livroAtual !== $livro;
             }
         );

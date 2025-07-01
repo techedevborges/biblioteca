@@ -2,34 +2,25 @@
 
 namespace Borges\Biblioteca;
 
-class Usuario
+abstract class Usuario
 {
-    private string $nome;
-    private string $tipo;
-    private array $livrosEmprestados = [];
+    protected string $nome;
+    protected array $livrosEmprestados = [];
 
-    public function __construct(string $nome, string $tipo = 'aluno')
+    public function __construct(string $nome)
     {
         $this->nome = $nome;
-        $this->tipo = $tipo;
     }
 
-    public function podePegarEmprestado(): bool
-    {
-        if ($this->tipo == 'professor' && count($this->livrosEmprestados) < 3) {
-            return true;
-        }
-
-        if ($this->tipo == 'aluno' && count($this->livrosEmprestados) < 1) {
-            return true;
-        }
-
-        return false;
-    }
+    abstract function podePegarEmprestado(): bool;
 
     public function adicionarLivroEmprestado(Livro $livro): void
     {
-        $this->livrosEmprestados[] = $livro;
+        if ($this->podePegarEmprestado()) {
+            $this->livrosEmprestados[] = $livro;
+        } else {
+            throw new \Exception('O usuário não pode pegar livros emprestados.');
+        }
     }
 
     public function removerLivroEmprestado(Livro $livro): void
