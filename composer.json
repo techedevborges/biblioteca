@@ -1,0 +1,15 @@
+{
+    "name": "borges/biblioteca",
+    "description": "Biblioteca em oop",
+    "autoload": {
+        "psr-4": {
+            "Borges\\Biblioteca\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Victor Borges"
+        }
+    ],
+    "require": {}
+}
