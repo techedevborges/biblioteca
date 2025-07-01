@@ -50,10 +50,14 @@ $professor->adicionarLivroEmprestado($livro4);
 // $visitante = new Visitante('Victor');
 // $visitante->adicionarLivroEmprestado($livro4);
 
-$bibliotecario = new Bibliotecario();
-$bibliotecario->emprestarLivro($aluno, $livro1, $estante);
-$bibliotecario->devolverLivro($aluno, $livro1, $estante);
-$bibliotecario->emprestarLivro($aluno1, $livro1, $estante);
+try {
+    Bibliotecario::emprestarLivro($aluno, $livro1, $estante);
+    echo 'Livro ' . $livro1->getTitulo() .   'emprestado com sucesso ' . $aluno->getNome() . '<br>';
+    Bibliotecario::devolverLivro($aluno, $livro1, $estante);
+    echo 'Livro ' . $livro1->getTitulo() . ' devolvido com sucesso por ' . $aluno->getNome() . '<br>';
+} catch (\Exception $e) {
+    echo 'Erro ao emprestar livro: ' . $e->getMessage() . '<br>';
+}
 
 // echo '<pre>';
 // var_dump($aluno->podePegarEmprestado());
